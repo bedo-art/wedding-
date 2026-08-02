@@ -23,15 +23,85 @@
             transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
             box-shadow: 0 20px 30px rgba(0,0,0,0.1);
         }
+
+        /* Cinematic Intro Animations */
+        #cinematic-intro {
+            transition: opacity 1.5s ease, visibility 1.5s ease;
+        }
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        @keyframes growRose {
+            0% { transform: scale(0.2) translateY(30px); opacity: 0; }
+            50% { transform: scale(1.1) translateY(0); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        @keyframes fadeInText {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-rose {
+            animation: growRose 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        .animate-text-1 {
+            animation: fadeInText 2s ease 1.5s forwards;
+            opacity: 0;
+        }
+        .animate-text-2 {
+            animation: fadeInText 2s ease 3.5s forwards;
+            opacity: 0;
+        }
+        .zoom-container {
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .zoom-in {
+            transform: scale(1.2);
+            opacity: 0;
+        }
     </style>
 </head>
-<body class="selection:bg-rose-200">
+<body class="selection:bg-rose-200 overflow-x-hidden">
+
+    <!-- Cinematic Intro Overlay -->
+    <div id="cinematic-intro" class="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center text-center px-4">
+        <div id="intro-content" class="zoom-container max-w-xl mx-auto space-y-8">
+            
+            <!-- Growing Rose Graphic / SVG -->
+            <div class="animate-rose flex justify-center">
+                <svg class="w-24 h-24 text-rose-500 drop-shadow-[0_0_15px_rgba(244,63,94,0.6)]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C9 2 6.5 4.5 6.5 7.5C6.5 9 7.2 10.3 8.3 11.2C6.9 12.1 6 13.7 6 15.5C6 18.5 8.5 21 11.5 21H12.5C15.5 21 18 18.5 18 15.5C18 13.7 17.1 12.1 15.7 11.2C16.8 10.3 17.5 9 17.5 7.5C17.5 4.5 15 2 12 2ZM12 4C13.9 4 15.5 5.6 15.5 7.5S13.9 11 12 11 8.5 9.4 8.5 7.5 10.1 4 12 4ZM12 13C14.2 13 16 14.8 16 17C16 18.1 15.1 19 14 19H10C8.9 19 8 18.1 8 17C8 14.8 9.8 13 12 13Z"/>
+                </svg>
+            </div>
+
+            <!-- Calligraphy Text 1 -->
+            <div class="animate-text-1">
+                <p class="font-serif text-2xl md:text-3xl text-rose-100 tracking-wide">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+            </div>
+
+            <!-- Calligraphy Text 2 -->
+            <div class="animate-text-2">
+                <p class="font-serif text-lg md:text-2xl text-rose-200/90 leading-relaxed font-light">
+                    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً...
+                </p>
+            </div>
+
+            <!-- Skip / Enter Button -->
+            <div class="pt-6 animate-text-2">
+                <button onclick="startWebsite()" class="border border-rose-500/50 hover:border-rose-400 text-rose-300 hover:text-white px-8 py-3 rounded-full text-sm tracking-widest uppercase transition backdrop-blur-sm bg-rose-950/30">
+                    فتح دعوة الزفاف ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <header id="vanta-bg" class="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-rose-50 via-pink-50 to-amber-100 text-center px-4 overflow-hidden">
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fbcfe8_1px,transparent_1px)] [background-size:16px_16px]"></div>
         <div class="relative z-10 max-w-2xl mx-auto space-y-6 card-3d bg-white/80 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl border border-emerald-100">
             <span class="text-rose-600 uppercase tracking-widest text-sm font-semibold">نتشرف بحضوركم حفل زفافنا المبارك</span>
-            <h1 class="text-4xl md:text-6xl font-serif text-rose-900 tracking-tight leading-relaxed">✨مَـنَةُ الـلَّـهِ & مُـحَـمَّـود ✨</h1>
+            <h1 class="text-4xl md:text-6xl font-serif text-rose-900 tracking-tight leading-relaxed">✨مَـنَةُ الـلَّـهِ & مُـحَـمَّـد ✨</h1>
             <p class="text-lg text-pink-700 font-light">شاركونا الفرحة وأجمل لحظات العمر</p>
             
             <div class="py-4 border-y border-rose-100 flex justify-around text-rose-900">
@@ -42,7 +112,7 @@
                 <div class="border-l border-rose-100"></div>
                 <div>
                     <span class="block text-xs uppercase text-slate-400">المكان</span>
-                    <span class="font-serif font-medium"> شربين /عزبة موسي شكري</span>
+                    <span class="font-serif font-medium">شربين / عزبة موسى شكري</span>
                 </div>
             </div>
 
@@ -116,7 +186,7 @@
                 </div>
                 <div>
                     <label for="attendance" class="block text-xs uppercase tracking-wider text-slate-500 mb-1">هل ستكون حاضرًا؟</label>
-                    <select id="attendance" name="attendance" class="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-rose-50 text-sm">
+                    <select id="attendance" name="attendance" autocomplete="off" class="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-rose-50 text-sm">
                         <option>أؤكد الحضور بكل سرور</option>
                         <option>أعتذر عن عدم الحضور</option>
                     </select>
@@ -143,6 +213,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
     <script>
+        // Cinematic Intro Transition Handler
+        function startWebsite() {
+            const intro = document.getElementById('cinematic-intro');
+            const content = document.getElementById('intro-content');
+            
+            content.classList.add('zoom-in');
+            intro.classList.add('fade-out');
+        }
+
+        // Auto transition after 6.5 seconds if they don't click
+        setTimeout(() => {
+            const intro = document.getElementById('cinematic-intro');
+            if (intro && !intro.classList.contains('fade-out')) {
+                startWebsite();
+            }
+        }, 7000);
+
         VANTA.BIRDS({
             el: "#vanta-bg",
             mouseControls: true,
@@ -188,7 +275,6 @@
 
         async function handleRSVP(e) {
             e.preventDefault();
-            console.log("🔥 Submit button was clicked!"); // This will force a message into your console
             
             const formData = new FormData(e.target);
             formData.append('access_key', '9918f5df-b5e9-4eee-82a6-36f0061bf600');
