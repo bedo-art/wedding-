@@ -193,18 +193,10 @@
 
         async function handleRSVP(e) {
             e.preventDefault();
+            console.log("🔥 Submit button was clicked!"); // This will force a message into your console
             
-            const name = document.getElementById('name').value;
-            const attendance = document.getElementById('attendance').value;
-            const guests = document.getElementById('guests').value;
-            const message = document.getElementById('message').value;
-
-            const formData = new FormData();
+            const formData = new FormData(e.target);
             formData.append('access_key', '9918f5df-b5e9-4eee-82a6-36f0061bf600');
-            formData.append('name', name);
-            formData.append('attendance', attendance);
-            formData.append('guests', guests);
-            formData.append('message', message);
             formData.append('subject', 'تأكيد حضور وتهنئة زفاف جديدة!');
 
             try {
@@ -214,7 +206,7 @@
                 });
 
                 if (response.status === 200) {
-                    document.querySelector('form').reset();
+                    e.target.reset();
                     document.getElementById('rsvp-success').classList.remove('hidden');
                 } else {
                     alert('حدث خطأ أثناء إرسال البيانات، يجدر المحاولة لاحقاً.');
