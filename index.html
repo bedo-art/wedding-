@@ -4,128 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حفل زفاف منة الله و محمود</title>
+    
+    <!-- Scripts & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #fff5f8;
-            color: #3f1f36;
-        }
-        h1, h2, h3, .font-serif {
-            font-family: 'Amiri', serif;
-        }
-        .card-3d {
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            transform-style: preserve-3d;
-        }
-        .card-3d:hover {
-            transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
-        }
-
-        /* Cinematic Intro Animations */
-        #cinematic-intro {
-            transition: opacity 1.5s ease, visibility 1.5s ease;
-        }
-        .fade-out {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        @keyframes growRose {
-            0% { transform: scale(0.2) translateY(30px); opacity: 0; }
-            50% { transform: scale(1.1) translateY(0); opacity: 1; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
-        }
-        @keyframes fadeInText {
-            0% { opacity: 0; transform: translateY(15px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-rose {
-            animation: growRose 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-        .animate-text-1 {
-            animation: fadeInText 2s ease 1.5s forwards;
-            opacity: 0;
-        }
-        .animate-text-2 {
-            animation: fadeInText 2s ease 3.5s forwards;
-            opacity: 0;
-        }
-        .zoom-container {
-            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-        .zoom-in {
-            transform: scale(1.2);
-            opacity: 0;
-        }
-    </style>
+    
+    <!-- External CSS File -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="selection:bg-rose-200 overflow-x-hidden">
+    
+    <!-- Cinematic Intro Overlay (Rose animation as first separate page) -->
+    <div id="triggerOverlay" class="trigger-overlay cinematic-intro">
+        <div class="vignette"></div>
+        <div class="spotlight"></div>
 
-    <!-- Cinematic Intro Overlay (Matched to Warm Theme) -->
-    <div id="cinematic-intro" class="fixed inset-0 z-50 bg-gradient-to-b from-[#2d1420] via-[#1f0d16] to-[#12070c] flex flex-col items-center justify-center text-center px-4">
-        <div id="intro-content" class="zoom-container max-w-xl mx-auto space-y-8">
-            
-            <!-- Growing Rose Graphic -->
-            <div class="animate-rose flex justify-center">
-                <svg class="w-24 h-24 text-rose-400 drop-shadow-[0_0_20px_rgba(251,113,133,0.5)]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,2C10.5,2 9,2.8 8,4C7,2.8 5.5,2 4,2C1.5,2 0,4 0,6.5C0,10.5 5,15 12,20C19,15 24,10.5 24,6.5C24,4 22.5,2 20,2C18.5,2 17,2.8 16,4C15,2.8 13.5,2 12,2M12,4C13,4 14,4.5 15,5.5C14.2,6.5 13.5,8 13,9.5C12.2,8.5 11.2,7.2 10,6C11,4.5 11.5,4 12,4M6,4C7,4 8,4.5 9,5.5C8,7 6.5,9 5,11.5C4.2,10 3.5,8 4.5,6C5,5 5.5,4 6,4M18,4C18.5,4 19,5 19.5,6C20.5,8 19.8,10 19,11.5C17.5,9 16,7 15,5.5C16,4.5 17,4 18,4Z"/>
-                </svg>
+        <div class="glass-card">
+            <div class="card-glow"></div>
+
+            <!-- Animated Rose Scene -->
+            <div class="scene">
+                <div id="roseWrapper" class="rose-wrapper">
+                    <div id="roseHead" class="rose-head">
+                        <div class="rose-glow"></div>
+                        <div class="rose-glow-inner"></div>
+                    </div>
+                    <div id="calyx" class="calyx"></div>
+                    <div class="stem-group">
+                        <div id="stem" class="stem">
+                            <div class="stem-highlight"></div>
+                        </div>
+                        <div class="thorn thorn-1"></div>
+                        <div class="thorn thorn-2"></div>
+                        <div id="leafLeft" class="leaf leaf-left"><div class="leaf-vein"></div></div>
+                        <div id="leafRight" class="leaf leaf-right"><div class="leaf-vein"></div></div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Calligraphy Text 1 -->
-            <div class="animate-text-1">
-                <p class="font-serif text-2xl md:text-3xl text-rose-100 tracking-wide">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-            </div>
+            <div class="rose-icon">🌹</div>
+            <div id="introTitle" class="title intro-hidden">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <p id="statusText" class="status-text intro-hidden">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً...</p>
 
-            <!-- Calligraphy Text 2 -->
-            <div class="animate-text-2">
-                <p class="font-serif text-lg md:text-2xl text-rose-200/90 leading-relaxed font-light">
-                    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً...
-                </p>
-            </div>
+            <div class="loading-bar-container"><div id="loadingBar" class="loading-bar"></div></div>
 
-            <!-- Skip / Enter Button -->
-            <div class="pt-6 animate-text-2">
-                <button onclick="startWebsite()" class="border border-rose-400/40 hover:border-rose-300 text-rose-200 hover:text-white px-8 py-3 rounded-full text-sm tracking-widest uppercase transition backdrop-blur-sm bg-rose-950/40 shadow-lg shadow-rose-950/50">
-                    فتح دعوة الزفاف ✨
-                </button>
+            <button id="startButton" class="start-button intro-hidden" disabled><span class="btn-shine"></span>فتح دعوة الزفاف ✨</button>
+
+            <div id="fallingPetals"></div>
+            <div id="endText" class="end-text">
+                <div class="tagline">دعوتنا تبدأ الآن</div>
+                <div class="rose-emoji">🌸</div>
             </div>
         </div>
+
+        <div id="ambientLight" class="ambient-light"></div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Main Wedding Website (Hidden underneath until faded) -->
     <header id="vanta-bg" class="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-rose-50 via-pink-50 to-amber-100 text-center px-4 overflow-hidden">
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fbcfe8_1px,transparent_1px)] [background-size:16px_16px]"></div>
         <div class="relative z-10 max-w-2xl mx-auto space-y-6 card-3d bg-white/80 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl border border-emerald-100">
             <span class="text-rose-600 uppercase tracking-widest text-sm font-semibold">نتشرف بحضوركم حفل زفافنا المبارك</span>
-            <h1 class="text-4xl md:text-6xl font-serif text-rose-900 tracking-tight leading-relaxed">✨ مَـنَةُ الـلَّـهِ & مَـحْـمُـود ✨</h1>
+            <h1 class="text-4xl md:text-6xl font-serif text-rose-900 tracking-tight leading-relaxed">مَـنَـةُ ٱللَّٰهِ وَ مَـحْـمُـود</h1>
             <p class="text-lg text-pink-700 font-light">شاركونا الفرحة وأجمل لحظات العمر</p>
             
             <div class="py-4 border-y border-rose-100 flex justify-around text-rose-900">
                 <div>
                     <span class="block text-xs uppercase text-slate-400">التاريخ</span>
-                    <span class="font-serif font-medium">٢٥ أغسطس ٢٠٢٦</span>
+                    <span class="font-serif font-medium">٢٧ أغسطس ٢٠٢٦ </span>
                 </div>
                 <div class="border-l border-rose-100"></div>
                 <div>
                     <span class="block text-xs uppercase text-slate-400">المكان</span>
-                    <span class="font-serif font-medium">شربين / عزبة موسى شكري</span>
+                    <span class="font-serif font-medium">قاعة كمبنسك نيو جاردن/طلخه</span>
                 </div>
             </div>
 
             <!-- Location Map Button -->
             <div>
-                <a href="https://maps.app.goo.gl/RA8HSDRKqvE4ZL6c7" target="_blank" class="inline-flex items-center justify-center gap-2 w-full bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 font-medium py-2.5 px-4 rounded-xl transition text-sm shadow-sm">
+                <a href="https://maps.app.goo.gl/4p4tBYPRUuS4sfWz5" target="_blank" class="inline-flex items-center justify-center gap-2 w-full bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 font-medium py-2.5 px-4 rounded-xl transition text-sm shadow-sm">
                     📍 اضغط هنا لعرض موقع القاعة على الخريطة
                 </a>
             </div>
 
             <!-- Embedded Location Map -->
             <div class="mt-6 rounded-3xl overflow-hidden border border-rose-100 shadow-sm">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d788.4192098167676!2d31.52349792847598!3d31.240082998389813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzHCsDE0JzI0LjMiTiAzMcKwMzEnMjkwOSJF!5e1!3m2!1sen!2seg!4v1785639926209!5m2!1sen!2seg" width="600" height="450" style="border:0; width: 100%; height: 450px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3415.7671920847274!2d31.396041238118908!3d31.06259617844358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f79d3dd5bc206f%3A0x639a42021e70cd31!2z2YLYp9i52Kkg2YPZhdio2YbYs9mDINmG2YrZiCDYrNin2LHYr9mGIEtlbXBpbnNrIG5ldyBnYXJkZW4!5e0!3m2!1sen!2seg!4v1785697504224!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
             </div>
 
             <!-- Countdown Timer -->
@@ -184,17 +148,7 @@
                     <label for="name" class="block text-xs uppercase tracking-wider text-slate-500 mb-1">الاسم الكامل</label>
                     <input type="text" id="name" name="name" autocomplete="name" required class="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-rose-50 text-sm">
                 </div>
-                <div>
-                    <label for="attendance" class="block text-xs uppercase tracking-wider text-slate-500 mb-1">هل ستكون حاضرًا؟</label>
-                    <select id="attendance" name="attendance" autocomplete="off" class="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-rose-50 text-sm">
-                        <option>أؤكد الحضور بكل سرور</option>
-                        <option>أعتذر عن عدم الحضور</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="guests" class="block text-xs uppercase tracking-wider text-slate-500 mb-1">عدد المرافقين</label>
-                    <input type="number" id="guests" name="guests" min="1" max="5" value="1" autocomplete="off" class="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-rose-50 text-sm">
-                </div>
+               
                 <div>
                     <label for="message" class="block text-xs uppercase tracking-wider text-slate-500 mb-1">كلمة أو دعوة للعروسين (اختياري)</label>
                     <textarea id="message" name="message" rows="2" placeholder="اكتب مباركة أو كلمة طيبة..." autocomplete="off" class="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-rose-50 text-sm"></textarea>
@@ -210,26 +164,190 @@
         <p>&copy; ٢٠٢٦ حفل زفاف منة الله و محمود. جميع الحقوق محفوظة.</p>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
     <script>
-        // Cinematic Intro Transition Handler
-        function startWebsite() {
-            const intro = document.getElementById('cinematic-intro');
-            const content = document.getElementById('intro-content');
-            
-            content.classList.add('zoom-in');
-            intro.classList.add('fade-out');
-        }
+        // Debug + fallback handlers for the intro overlay and start button
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('triggerOverlay');
+            const startButton = document.getElementById('startButton');
+            const loadingBar = document.getElementById('loadingBar');
 
-        // Auto transition after 7 seconds if they don't click
-        setTimeout(() => {
-            const intro = document.getElementById('cinematic-intro');
-            if (intro && !intro.classList.contains('fade-out')) {
-                startWebsite();
+            if (startButton) {
+                // If the loader didn't enable the button, enable after 4s as a fallback
+                setTimeout(() => {
+                    if (startButton.disabled) {
+                        startButton.removeAttribute('disabled');
+                    }
+                }, 4000);
+
+                // Ensure clicking always fades the overlay and triggers the animation
+                startButton.addEventListener('click', () => {
+                    if (overlay) overlay.classList.add('fade-out');
+                    if (typeof startAnimationSequence === 'function') {
+                        startAnimationSequence();
+                    }
+                });
             }
-        }, 7000);
+        });
+    </script>
+    <script>
+        // Persist that user saw the intro and auto-start on subsequent visits
+        (function(){
+            const seen = (function(){ try { return localStorage.getItem('roseIntroSeen') === 'true'; } catch(e){ return false; } })();
+            document.addEventListener('click', function onDocClick(e){
+                const btn = document.getElementById('startButton');
+                if (!btn) return document.removeEventListener('click', onDocClick);
+                btn.addEventListener('click', () => { try { localStorage.setItem('roseIntroSeen', 'true'); } catch(e){} }, { once: true });
+                document.removeEventListener('click', onDocClick);
+            });
 
+            if (seen) {
+                setTimeout(() => {
+                    const btn = document.getElementById('startButton');
+                    if (btn) btn.click();
+                }, 600);
+            }
+        })();
+    </script>
+    <script>
+        // Orchestrate bloom-first, then reveal title/status/button
+        document.addEventListener('DOMContentLoaded', () => {
+            const stem = document.getElementById('stem');
+            const leafLeft = document.getElementById('leafLeft');
+            const leafRight = document.getElementById('leafRight');
+            const calyx = document.getElementById('calyx');
+            const roseHead = document.getElementById('roseHead');
+            const roseWrapper = document.getElementById('roseWrapper');
+            const introTitle = document.getElementById('introTitle');
+            const statusText = document.getElementById('statusText');
+            const startButton = document.getElementById('startButton');
+            const endText = document.getElementById('endText');
+            const fallingPetalsEl = document.getElementById('fallingPetals');
+
+            if (!stem || !roseHead) return;
+
+            // --- Build the actual petals & sepals (this is what was missing) ---
+            // Layer sizes/depths scaled 0.6x from the original Rose.zip script.js
+            const PETAL_LAYERS = [
+                { count: 4, w: 14.4, h: 27.6, curl: 78, delayBase: 0, tz: 1.2, cls: 'petal-bud' },
+                { count: 5, w: 20.4, h: 34.8, curl: 65, delayBase: 0.25, tz: 5.4, cls: 'petal-core' },
+                { count: 6, w: 27.6, h: 43.2, curl: 48, delayBase: 0.55, tz: 10.8, cls: 'petal-inner' },
+                { count: 7, w: 34.8, h: 52.8, curl: 22, delayBase: 0.90, tz: 18, cls: 'petal-mid-inner' },
+                { count: 8, w: 43.2, h: 62.4, curl: -5, delayBase: 1.30, tz: 26.4, cls: 'petal-mid' },
+                { count: 9, w: 51.6, h: 70.8, curl: -25, delayBase: 1.75, tz: 36, cls: 'petal-outer' },
+                { count: 10, w: 58.8, h: 78, curl: -48, delayBase: 2.25, tz: 45.6, cls: 'petal-blush' },
+            ];
+            const SEPALS_COUNT = 5;
+
+            function createSepals() {
+                const step = 360 / SEPALS_COUNT;
+                for (let i = 0; i < SEPALS_COUNT; i++) {
+                    const sepal = document.createElement('div');
+                    sepal.className = 'sepal';
+                    const angle = i * step + (Math.random() - 0.5) * 5;
+                    const delay = 0.3 + i * 0.06;
+                    const curl = 18 + Math.random() * 8;
+                    sepal.style.setProperty('--sepal-angle', `${angle}deg`);
+                    sepal.style.setProperty('--sepal-curl', `${curl}deg`);
+                    sepal.style.setProperty('--sepal-delay', `${delay}s`);
+                    calyx.appendChild(sepal);
+                }
+            }
+
+            function createPetals() {
+                PETAL_LAYERS.forEach((layer, li) => {
+                    const angleStep = 360 / layer.count;
+                    const layerOffset = li * 24 + (Math.random() - 0.5) * 8;
+                    for (let i = 0; i < layer.count; i++) {
+                        const petal = document.createElement('div');
+                        petal.className = `petal ${layer.cls}`;
+                        const angle = layerOffset + i * angleStep + (Math.random() - 0.5) * 5;
+                        const delay = layer.delayBase + i * 0.05;
+                        const curlJitter = (Math.random() - 0.5) * 6;
+                        const scaleJitter = 0.94 + Math.random() * 0.12;
+                        const bloomDur = 2.1 + Math.random() * 0.4;
+                        petal.style.width = `${layer.w}px`;
+                        petal.style.height = `${layer.h}px`;
+                        petal.style.setProperty('--angle', `${angle}deg`);
+                        petal.style.setProperty('--curl', `${layer.curl + curlJitter}deg`);
+                        petal.style.setProperty('--scale', scaleJitter);
+                        petal.style.setProperty('--delay', `${delay}s`);
+                        petal.style.setProperty('--tz', `${layer.tz}px`);
+                        petal.style.setProperty('--bloom-dur', `${bloomDur}s`);
+                        roseHead.appendChild(petal);
+                    }
+                });
+            }
+
+            const FALLING_PETAL_COLORS = [
+                ['#9a001d', '#3d0008'], ['#850018', '#2b0005'],
+                ['#ad0022', '#480008'], ['#bf0028', '#52000c'],
+            ];
+
+            function spawnFallingPetal() {
+                if (!fallingPetalsEl || fallingPetalsEl.childElementCount > 10) return;
+                const petal = document.createElement('div');
+                petal.className = 'falling-petal';
+                const w = 10 + Math.random() * 12;
+                const h = w * (1.25 + Math.random() * 0.15);
+                const x = 20 + Math.random() * 60;
+                const y = 3 + Math.random() * 10;
+                const dur = 5.5 + Math.random() * 3.5;
+                const delay = Math.random() * 0.6;
+                const colors = FALLING_PETAL_COLORS[Math.floor(Math.random() * FALLING_PETAL_COLORS.length)];
+                const sign = () => (Math.random() > 0.5 ? 1 : -1);
+                petal.style.left = `${x}vw`;
+                petal.style.top = `${y}vh`;
+                petal.style.setProperty('--fp-w', `${w}px`);
+                petal.style.setProperty('--fp-h', `${h}px`);
+                petal.style.setProperty('--fp-c1', colors[0]);
+                petal.style.setProperty('--fp-c2', colors[1]);
+                petal.style.setProperty('--f-dur', `${dur}s`);
+                petal.style.setProperty('--f-delay', `${delay}s`);
+                petal.style.setProperty('--s1', `${sign() * (15 + Math.random() * 25)}px`);
+                petal.style.setProperty('--s2', `${sign() * (10 + Math.random() * 20)}px`);
+                petal.style.setProperty('--s3', `${sign() * (20 + Math.random() * 30)}px`);
+                petal.style.setProperty('--s4', `${sign() * (10 + Math.random() * 15)}px`);
+                fallingPetalsEl.appendChild(petal);
+                setTimeout(() => { if (petal.parentNode) petal.remove(); }, (dur + delay) * 1000 + 300);
+            }
+
+            function startFallingPetals() {
+                for (let i = 0; i < 3; i++) setTimeout(() => spawnFallingPetal(), i * 300);
+                setInterval(() => spawnFallingPetal(), 2200);
+            }
+
+            createSepals();
+            createPetals();
+
+            // --- Timeline (unchanged) ---
+            const tGrow = 200;
+            const tLeafLeft = 900;
+            const tLeafRight = 1200;
+            const tBloom = 1500;
+            const tRotate = 3500;
+            const tReveal = 4200;
+            const tPetalsFall = 4600;
+
+            setTimeout(() => stem.classList.add('grow'), tGrow);
+            setTimeout(() => leafLeft.classList.add('visible'), tLeafLeft);
+            setTimeout(() => leafRight.classList.add('visible'), tLeafRight);
+            setTimeout(() => { calyx.classList.add('visible'); roseHead.classList.add('blooming'); }, tBloom);
+            setTimeout(() => roseWrapper.classList.add('rotating'), tRotate);
+            setTimeout(() => startFallingPetals(), tPetalsFall);
+            setTimeout(() => { if (endText) endText.classList.add('visible'); }, tPetalsFall);
+
+            setTimeout(() => {
+                if (introTitle) { introTitle.classList.remove('intro-hidden'); introTitle.classList.add('intro-visible'); }
+                if (statusText) { statusText.classList.remove('intro-hidden'); statusText.classList.add('intro-visible'); }
+                if (startButton) { startButton.classList.remove('intro-hidden'); startButton.classList.add('intro-visible'); startButton.removeAttribute('disabled'); }
+            }, tReveal);
+        });
+    </script>
+    <script>
+        // --- Vanta Background Setup ---
         VANTA.BIRDS({
             el: "#vanta-bg",
             mouseControls: true,
@@ -252,7 +370,8 @@
             backgroundAlpha: 0.48
         });
 
-        const weddingDate = new Date("August 25, 2026 00:00:00").getTime();
+        // --- Countdown Timer ---
+        const weddingDate = new Date("August 27, 2026 00:00:00").getTime();
         
         function updateCountdown() {
             const now = new Date().getTime();
@@ -273,10 +392,12 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
+        // --- Form Submission ---
         async function handleRSVP(e) {
             e.preventDefault();
             
-            const formData = new FormData(e.target);
+            const formEl = e.target;
+            const formData = new FormData(formEl);
             formData.append('access_key', '9918f5df-b5e9-4eee-82a6-36f0061bf600');
             formData.append('subject', 'تأكيد حضور وتهنئة زفاف جديدة!');
 
@@ -287,7 +408,7 @@
                 });
 
                 if (response.status === 200) {
-                    e.target.reset();
+                    formEl.reset();
                     document.getElementById('rsvp-success').classList.remove('hidden');
                 } else {
                     alert('حدث خطأ أثناء إرسال البيانات، يجدر المحاولة لاحقاً.');
