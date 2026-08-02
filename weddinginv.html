@@ -114,6 +114,11 @@
                     <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">الاسم الكامل</label>
                     <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-rose-50 text-sm">
                 </div>
+                <!-- New WhatsApp Field -->
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">رقم الواتساب</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" required dir="ltr" placeholder="01x xxxx xxxx" class="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-rose-50 text-sm text-right">
+                </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">هل ستكون حاضرًا؟</label>
                     <select id="attendance" name="attendance" class="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300 bg-rose-50 text-sm">
@@ -186,6 +191,7 @@
             e.preventDefault();
             
             const name = document.getElementById('name').value;
+            const whatsapp = document.getElementById('whatsapp').value;
             const attendance = document.getElementById('attendance').value;
             const guests = document.getElementById('guests').value;
 
@@ -199,6 +205,7 @@
                     body: JSON.stringify({
                         access_key: 'YOUR_ACCESS_KEY_HERE', // Paste your Web3Forms key inside these quotes
                         name: name,
+                        whatsapp: whatsapp,
                         attendance: attendance,
                         guests: guests,
                         subject: 'تأكيد حضور زفاف جديد!' // The subject of the email you will receive
