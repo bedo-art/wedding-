@@ -1,36 +1,44 @@
-async function handleRSVP(e, accessKey, successElementId) {
-    e.preventDefault();
-    
-    const formEl = e.target;
-    const formData = new FormData(formEl);
-    
-    // Inject the specific access key for this form box
-    formData.set('access_key', accessKey);
-    formData.append('subject', 'تأكيد حضور أو تهنئة جديدة من حفل الزفاف!');
+export default function handler(req, res) {
+    // Enable basic CORS headers if needed
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    );
 
-    try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            formEl.reset();
-            const successEl = document.getElementById(successElementId);
-            successEl.classList.remove('hidden');
-            
-            // Hide success text after 6 seconds
-            setTimeout(() => {
-                successEl.classList.add('hidden');
-            }, 6000);
-        } else {
-            console.error('Submission error:', result);
-            alert('حدث خطأ أثناء إرسال البيانات، يرجى المحاولة لاحقاً.');
-        }
-    } catch (error) {
-        console.error('Error submitting form:', error);
-        alert('فشل الاتصال بالخادم.');
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
     }
+
+    if (req.method === 'POST') {
+        const { name, whatsapp, attendance, guests } = req.body;
+
+        if (!name) {
+            return res.status(400).json({ success: false, error: 'Name is required' });
+        }
+
+        if (!whatsapp) {
+            return res.status(400).json({ success: false, error: 'WhatsApp number is required' });
+        }
+
+        // For demo purposes, log the RSVP data to the server logs.
+        // In production, you can replace this with code to save data to MongoDB, Firebase, Supabase, or Google Sheets.
+        console.log('--- New RSVP Submission ---');
+        console.log(`Name: ${name}`);
+        console.log(`WhatsApp: ${whatsapp}`);
+        console.log(`Status: ${attendance}`);
+        console.log(`Guests: ${guests}`);
+        console.log(`Timestamp: ${new Date().toISOString()}`);
+
+        return res.status(200).json({
+            success: true,
+            message: 'RSVP saved successfully',
+            data: { name, whatsapp, attendance, guests }
+        });
+    }
+
+    return res.status(405).json({ success: false, error: 'Method not allowed' });
 }
