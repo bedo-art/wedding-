@@ -17,6 +17,11 @@
     <!-- Full-Page Vanta Animated Background -->
     <canvas id="hearts-bg" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
+    <!-- Top Couple Banner — bride & groom holding hands, sits in normal page flow at the very top, scrolls away naturally (no fade) -->
+    <div class="hero-couple-banner" aria-hidden="true">
+        <img src="hero-couple.png" alt="" class="hero-couple-banner-img">
+    </div>
+
     <!-- Cinematic Intro Overlay (Rose animation as first separate page) -->
     <div id="triggerOverlay" class="trigger-overlay cinematic-intro">
         <div class="vignette"></div>
@@ -64,6 +69,12 @@
     </div>
 
     <!-- Main Wedding Website Content -->
+    <div class="veil-section">
+    <div class="veil-stack" aria-hidden="true">
+        <img src="veil-1.png" alt="" class="veil-stack-img">
+        <img src="veil-2.png" alt="" class="veil-stack-img">
+        <img src="veil-3.png" alt="" class="veil-stack-img">
+    </div>
     <main class="relative z-10 px-3 sm:px-6 py-8 sm:py-16 max-w-4xl mx-auto space-y-12">
         
         <!-- Hero Card Section -->
@@ -215,7 +226,6 @@
                     <div class="gallery-frame aspect-square rounded-2xl bg-white/90 backdrop-blur-md border border-blue-100 shadow-md flex items-center justify-center text-blue-300 text-3xl">✨</div>
                     <div class="gallery-frame aspect-square rounded-2xl bg-white/90 backdrop-blur-md border border-blue-100 shadow-md flex items-center justify-center text-blue-300 text-3xl">🤍</div>
                 </div>
-                <p class="text-center text-xs text-slate-400 mt-4">* أضيفوا صوركم الخاصة هنا لاحقاً</p>
             </div>
         </section>
 
@@ -335,7 +345,7 @@
                     <div class="bg-white/90 backdrop-blur-md p-6 sm:p-8 rounded-3xl shadow-xl border border-blue-100 card-3d">
                         <h3 class="text-xl font-serif text-blue-950 mb-4 text-center border-b border-sky-200 pb-3">تهنئة للعروس (منة الله)</h3>
                         <form onsubmit="submitRSVP(event, '9918f5df-b5e9-4eee-82a6-36f0061bf600', 'bride-success')" class="space-y-4">
-                           <div>
+                            <div>
                                 <label class="block text-xs uppercase text-rose-700 font-medium mb-1">الاسم الكامل</label>
                                 <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-rose-200 bg-rose-50/30 text-sm text-slate-700 placeholder-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-transparent transition">
                             </div>
@@ -358,6 +368,7 @@
         
 
     </main>
+    </div>
 
     <!-- Footer -->
     <footer class="relative z-10 py-6 text-center text-xs sm:text-sm text-slate-500 bg-white/95 border-t border-slate-100 mt-12">
