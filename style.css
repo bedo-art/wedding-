@@ -1261,6 +1261,71 @@ main h2.font-serif::before {
     object-fit: cover;
     object-position: 50% 8%;
 }
+
+@media (max-width: 640px) {
+    .hero-couple-banner {
+        height: min(90vh, 620px);
+    }
+    .hero-couple-banner-img {
+        object-position: 50% 14%;
+    }
+    .veil-section {
+        margin-top: 0;
+    }
+    .glass-card {
+        width: min(95vw, 340px);
+        padding: 18px 14px;
+    }
+    .cinematic-intro .glass-card .title {
+        font-size: 18px;
+    }
+    .cinematic-intro .status-text {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+    .cinematic-intro .start-button {
+        font-size: 13px;
+        padding: 12px;
+    }
+    .ring-heart-divider svg {
+        width: 32px;
+        height: 20px;
+    }
+    .corner-ornament {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-couple-banner {
+        height: min(82vh, 560px);
+    }
+    .glass-card {
+        width: min(96vw, 320px);
+        padding: 16px 12px;
+    }
+    .cinematic-intro .glass-card .title {
+        font-size: 16px;
+    }
+    .cinematic-intro .status-text {
+        font-size: 12px;
+    }
+    .cinematic-intro .start-button {
+        font-size: 12px;
+        padding: 11px;
+    }
+    .music-toggle {
+        width: 48px;
+        height: 48px;
+        bottom: 16px;
+        inset-inline-end: 16px;
+    }
+    .hero-couple-banner-img {
+        object-position: 50% 18%;
+    }
+} 
+
 @media (min-width: 1024px) {
     .hero-couple-banner-img {
         object-position: 50% 4%;
