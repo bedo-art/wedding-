@@ -968,7 +968,19 @@ body::after {
     background-size: 180px 180px;
 }
 
-main, footer, .cinematic-intro, #hearts-bg { position: relative; z-index: 1; }
+main, footer, .cinematic-intro { position: relative; z-index: 1; }
+
+#hearts-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body::before,
+body::after {
+    z-index: -1;
+}
 
 /* ---------------------------------------------------------
    2. Breathing room between sections + inside cards
@@ -1193,5 +1205,64 @@ main h2.font-serif::before {
     a[href="#rsvp"], #rsvp button[type="submit"] {
         transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================
+   Veil Section
+   Full-width wrapper that starts right after the top couple
+   banner. Holds three stacked veil crops (1, 2, 3 — fullest
+   to faintest) positioned absolutely at its top so they sit
+   behind the content as one continuous drape, without pushing
+   the page content down. Once past the third crop, the page
+   simply falls back to its normal background — that's the
+   "something else" section for later.
+========================================= */
+.veil-section {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+.veil-stack {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+    line-height: 0;
+}
+.veil-stack-img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* =========================================
+   Top Couple Banner
+   Bride & groom holding hands, sits in normal page flow
+   at the very top of the page (its own section, not fixed).
+   No fade — it simply scrolls away naturally as the guest
+   scrolls down into the veil section below.
+========================================= */
+.hero-couple-banner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    background: linear-gradient(to bottom, #eef3f8, #eef3f8 70%, transparent);
+}
+.hero-couple-banner-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 8%;
+}
+@media (min-width: 1024px) {
+    .hero-couple-banner-img {
+        object-position: 50% 4%;
     }
 }
