@@ -3,8 +3,19 @@
 ========================================= */
 body {
     font-family: 'Cairo', sans-serif;
-    background-color: #eef3f8;
     color: #1c2e46;
+    background-color: #f6f1e7;
+    background-image:
+        radial-gradient(ellipse 900px 600px at 8% -5%, rgba(233, 195, 198, 0.35), transparent 60%),
+        radial-gradient(ellipse 900px 700px at 100% 10%, rgba(140, 168, 137, 0.18), transparent 55%),
+        radial-gradient(ellipse 1000px 800px at 50% 100%, rgba(92, 122, 158, 0.14), transparent 60%),
+        radial-gradient(circle at 20% 30%, rgba(201, 162, 75, 0.06) 0%, transparent 2%),
+        radial-gradient(circle at 80% 65%, rgba(201, 162, 75, 0.06) 0%, transparent 2%),
+        linear-gradient(180deg, #f8f4ec 0%, #f3ece0 45%, #f6f0e6 100%);
+    background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
+    background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat, no-repeat;
+    background-size: cover, cover, cover, 140px 140px, 160px 160px, cover;
+    position: relative;
 }
 
 h1, h2, h3, .font-serif {
@@ -17,6 +28,8 @@ h1, h2, h3, .font-serif {
 .card-3d {
     transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     transform-style: preserve-3d;
+    background-image: linear-gradient(175deg, rgba(255,255,255,0.98), rgba(251, 245, 235, 0.92)) !important;
+    box-shadow: 0 4px 14px rgba(30, 58, 95, 0.06), 0 24px 48px -20px rgba(30, 58, 95, 0.18), inset 0 0 0 1px rgba(201, 162, 75, 0.16) !important;
 }
 
 @media (min-width: 768px) {
@@ -709,7 +722,30 @@ h1, h2, h3, .font-serif {
 
 /* Gallery frame motion */
 .gallery-frame {
+    position: relative;
+    overflow: hidden;
     transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    background-image: linear-gradient(160deg, rgba(255,255,255,0.97), rgba(251, 244, 232, 0.9));
+    box-shadow: 0 10px 26px -8px rgba(30, 58, 95, 0.18), inset 0 0 0 1px rgba(201, 162, 75, 0.22);
+}
+.gallery-frame::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(201, 162, 75, 0.35);
+    border-radius: inherit;
+    pointer-events: none;
+}
+.gallery-frame::after {
+    content: '';
+    position: absolute;
+    right: -14px;
+    bottom: -14px;
+    width: 60px;
+    height: 60px;
+    opacity: 0.35;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%238fa889' stroke-width='1.2'%3E%3Cpath d='M4 56 C20 40 30 30 56 4'/%3E%3Cpath d='M14 46 C20 46 22 40 20 34'/%3E%3Cpath d='M28 32 C34 32 36 26 34 20'/%3E%3C/g%3E%3C/svg%3E");
 }
 .gallery-frame:hover {
     transform: translateY(-8px) scale(1.03);
@@ -736,7 +772,7 @@ h1, h2, h3, .font-serif {
     height: 52px;
     border-radius: 50%;
     background: linear-gradient(135deg, #1e3a5f 0%, #0a1f38 100%);
-    box-shadow: 0 8px 24px rgba(10, 31, 56, 0.35);
+    box-shadow: 0 8px 24px rgba(10, 31, 56, 0.35), 0 0 0 3px rgba(201, 162, 75, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -799,6 +835,30 @@ h1, h2, h3, .font-serif {
 
 @media (min-width: 640px) {
     .corner-ornament { width: 80px; height: 80px; }
+}
+
+/* Magnolia floral accent — reusable sprig illustration in the site's navy/gold/sage palette */
+.magnolia-accent {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    pointer-events: none;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'> <g fill='none' stroke='%238fa889' stroke-width='2.2'>  <path d='M100 190 C70 150 40 120 20 70' stroke-linecap='round'/>  <path d='M100 190 C120 155 150 130 175 90' stroke-linecap='round'/> </g> <g>  <path d='M35 95 C15 85 8 65 20 50 C30 60 34 78 35 95 Z' fill='%238fa889' opacity='0.9'/>  <path d='M22 55 C24 66 28 76 35 84' stroke='%235c7a54' stroke-width='1' fill='none' opacity='0.6'/> </g> <g>  <path d='M160 108 C182 100 190 78 178 62 C166 74 160 92 160 108 Z' fill='%238fa889' opacity='0.9'/>  <path d='M172 68 C170 80 165 92 160 100' stroke='%235c7a54' stroke-width='1' fill='none' opacity='0.6'/> </g> <g transform='translate(75,40)'>  <ellipse cx='0' cy='-28' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.8' transform='rotate(-6)'/>  <ellipse cx='24' cy='-14' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.8' transform='rotate(52)'/>  <ellipse cx='22' cy='16' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.8' transform='rotate(118)'/>  <ellipse cx='-4' cy='26' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.8' transform='rotate(182)'/>  <ellipse cx='-26' cy='6' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.8' transform='rotate(-60)'/>  <ellipse cx='-20' cy='-20' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.8' transform='rotate(-124)'/>  <circle cx='0' cy='0' r='7' fill='%23c9a24b' opacity='0.85'/>  <circle cx='0' cy='0' r='3' fill='%231e3a5f' opacity='0.7'/> </g> <g transform='translate(150,55) scale(0.55)'>  <ellipse cx='0' cy='-28' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.9' transform='rotate(10)'/>  <ellipse cx='24' cy='-14' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.9' transform='rotate(68)'/>  <ellipse cx='22' cy='16' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.9' transform='rotate(134)'/>  <ellipse cx='-4' cy='26' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.9' transform='rotate(198)'/>  <ellipse cx='-26' cy='6' rx='13' ry='24' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.9' transform='rotate(-46)'/>  <circle cx='0' cy='0' r='7' fill='%23c9a24b' opacity='0.85'/>  <circle cx='0' cy='0' r='3' fill='%231e3a5f' opacity='0.7'/> </g> <circle cx='30' cy='115' r='6' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.8'/> <circle cx='168' cy='125' r='5' fill='%23fdfaf4' stroke='%23c9a24b' stroke-width='0.8'/></svg>");
+}
+.magnolia-accent.mag-sm { width: 80px; height: 80px; }
+.magnolia-accent.mag-lg { width: 190px; height: 190px; }
+.magnolia-accent.mag-flip { transform: scaleX(-1); }
+.magnolia-hero-br { bottom: -22px; right: -22px; }
+.magnolia-schedule-tl { top: -18px; left: -18px; opacity: 0.55; }
+.magnolia-footer { top: -52px; left: 50%; transform: translateX(-50%) scale(0.6); opacity: 0.75; }
+
+@media (max-width: 640px) {
+    .magnolia-accent { width: 90px; height: 90px; }
+    .magnolia-accent.mag-lg { width: 130px; height: 130px; }
 }
 
 /* Ring & Heart Divider between date and location */
@@ -924,24 +984,6 @@ h1, h2, h3, .font-serif {
     --navy-deep: #0a1f38;
 }
 
-/* ---------------------------------------------------------
-   1. Body — layered luxury paper backdrop
---------------------------------------------------------- */
-body {
-    background-color: #f6f1e7;
-    background-image:
-        radial-gradient(ellipse 900px 600px at 8% -5%, rgba(233, 195, 198, 0.35), transparent 60%),
-        radial-gradient(ellipse 900px 700px at 100% 10%, rgba(140, 168, 137, 0.18), transparent 55%),
-        radial-gradient(ellipse 1000px 800px at 50% 100%, rgba(92, 122, 158, 0.14), transparent 60%),
-        radial-gradient(circle at 20% 30%, rgba(201, 162, 75, 0.06) 0%, transparent 2%),
-        radial-gradient(circle at 80% 65%, rgba(201, 162, 75, 0.06) 0%, transparent 2%),
-        linear-gradient(180deg, #f8f4ec 0%, #f3ece0 45%, #f6f0e6 100%);
-    background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
-    background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat, no-repeat;
-    background-size: cover, cover, cover, 140px 140px, 160px 160px, cover;
-    position: relative;
-}
-
 /* Faint floral vine watermark drifting across the whole page */
 body::before {
     content: '';
@@ -983,7 +1025,7 @@ body::after {
 }
 
 /* ---------------------------------------------------------
-   2. Breathing room between sections + inside cards
+   1. Breathing room between sections + inside cards
 --------------------------------------------------------- */
 main.space-y-12 > * + *,
 main.space-y-12 > * ~ * {
@@ -1002,7 +1044,7 @@ main.space-y-12 > * ~ * {
 }
 
 /* ---------------------------------------------------------
-   3. Section "album page" framing — soft border, deep layered
+   2. Section "album page" framing — soft border, deep layered
       shadow, gold hairline inset, faint corner blooms.
       (Skips the hero, which already carries its own gold/navy
       corner ornaments in the markup.)
@@ -1043,46 +1085,7 @@ main > section:not(:first-of-type)::before {
 #gallery::after, #rsvp::after   { top: -0.5rem; right: -0.5rem; transform: scaleX(-1); }
 
 /* ---------------------------------------------------------
-   4. Gallery frames — elegant matting + floral watermark
---------------------------------------------------------- */
-.gallery-frame {
-    position: relative;
-    background-image:
-        linear-gradient(160deg, rgba(255,255,255,0.97), rgba(251, 244, 232, 0.9));
-    box-shadow: 0 10px 26px -8px rgba(30, 58, 95, 0.18), inset 0 0 0 1px rgba(201, 162, 75, 0.22);
-    overflow: hidden;
-}
-.gallery-frame::before {
-    content: '';
-    position: absolute;
-    inset: 6px;
-    border: 1px solid rgba(201, 162, 75, 0.35);
-    border-radius: inherit;
-    pointer-events: none;
-}
-.gallery-frame::after {
-    content: '';
-    position: absolute;
-    right: -14px;
-    bottom: -14px;
-    width: 60px;
-    height: 60px;
-    opacity: 0.35;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%238fa889' stroke-width='1.2'%3E%3Cpath d='M4 56 C20 40 30 30 56 4'/%3E%3Cpath d='M14 46 C20 46 22 40 20 34'/%3E%3Cpath d='M28 32 C34 32 36 26 34 20'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-/* ---------------------------------------------------------
-   5. Cards (.card-3d) — champagne edge, deeper layered shadow,
-      quiet ivory gradient fill
---------------------------------------------------------- */
-.card-3d {
-    background-image: linear-gradient(175deg, rgba(255,255,255,0.98), rgba(251, 245, 235, 0.92)) !important;
-    box-shadow: 0 4px 14px rgba(30, 58, 95, 0.06), 0 24px 48px -20px rgba(30, 58, 95, 0.18), inset 0 0 0 1px rgba(201, 162, 75, 0.16) !important;
-}
-
-/* ---------------------------------------------------------
-   6. Countdown — soft champagne cells with hairline ring
+   3. Countdown — soft champagne cells with hairline ring
 --------------------------------------------------------- */
 #countdown > div {
     position: relative;
@@ -1091,7 +1094,7 @@ main > section:not(:first-of-type)::before {
 }
 
 /* ---------------------------------------------------------
-   7. Buttons — champagne shine sweep, gentler easing
+   4. Buttons — champagne shine sweep, gentler easing
 --------------------------------------------------------- */
 a[href="#rsvp"],
 #rsvp button[type="submit"] {
@@ -1133,7 +1136,7 @@ main a[href*="maps.app.goo.gl"]:hover {
 }
 
 /* ---------------------------------------------------------
-   8. Map + iframe — soften into an album photograph
+   5. Map + iframe — soften into an album photograph
 --------------------------------------------------------- */
 main .rounded-2xl.overflow-hidden.border,
 main .rounded-3xl.overflow-hidden.border {
@@ -1141,7 +1144,7 @@ main .rounded-3xl.overflow-hidden.border {
 }
 
 /* ---------------------------------------------------------
-   9. Footer — quiet gold hairline + soft gradient close
+   6. Footer — quiet gold hairline + soft gradient close
 --------------------------------------------------------- */
 footer {
     position: relative;
@@ -1171,14 +1174,7 @@ footer::after {
 }
 
 /* ---------------------------------------------------------
-   10. Floating music toggle — champagne ring accent
---------------------------------------------------------- */
-.music-toggle {
-    box-shadow: 0 8px 24px rgba(10, 31, 56, 0.35), 0 0 0 3px rgba(201, 162, 75, 0.25) !important;
-}
-
-/* ---------------------------------------------------------
-   11. Headings — quiet glow behind serif titles for richness
+   7. Headings — quiet glow behind serif titles for richness
 --------------------------------------------------------- */
 main h1.font-serif, main h2.font-serif {
     position: relative;
@@ -1197,7 +1193,7 @@ main h2.font-serif::before {
 }
 
 /* ---------------------------------------------------------
-   12. Respect reduced motion preference
+   8. Respect reduced motion preference
 --------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-scale, .reveal-stagger > *,
@@ -1222,12 +1218,14 @@ main h2.font-serif::before {
     position: relative;
     z-index: 1;
     width: 100%;
+    overflow-x: clip;
 }
 .veil-stack {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    width: 887px;
+    transform: translateX(-50%);
     z-index: 1;
     pointer-events: none;
     line-height: 0;
@@ -1251,7 +1249,6 @@ main h2.font-serif::before {
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    pointer-events: none;
     background: linear-gradient(to bottom, #eef3f8, #eef3f8 70%, transparent);
 }
 .hero-couple-banner-img {
@@ -1260,6 +1257,54 @@ main h2.font-serif::before {
     height: 100%;
     object-fit: cover;
     object-position: 50% 8%;
+    pointer-events: none;
+}
+
+/* Quran verse overlay in the open space above the couple */
+.hero-verse {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90vw, 620px);
+    text-align: center;
+    z-index: 3;
+    pointer-events: none;
+}
+.hero-verse-ornament {
+    display: block;
+    color: #c9a24b;
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    opacity: 0.85;
+}
+.hero-verse-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1rem, 2.6vw, 1.5rem);
+    line-height: 2;
+    color: #1e3a5f;
+    text-shadow: 0 2px 14px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+.hero-verse-ref {
+    display: block;
+    margin-top: 0.6rem;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: #c9a24b;
+    text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
+}
+.hero-verse-flourish-l, .hero-verse-flourish-r {
+    top: 4%;
+    opacity: 0.6;
+}
+.hero-verse-flourish-l { left: 2%; }
+.hero-verse-flourish-r { right: 2%; }
+
+@media (max-width: 640px) {
+    .hero-verse { top: 4%; width: 88vw; }
+    .hero-verse-text { line-height: 1.9; }
+    .hero-verse-flourish-l, .hero-verse-flourish-r { display: none; }
 }
 
 @media (max-width: 640px) {
@@ -1330,4 +1375,99 @@ main h2.font-serif::before {
     .hero-couple-banner-img {
         object-position: 50% 4%;
     }
+}
+/* Keep the floral veil at its native width on every screen.  Small screens
+   show a centered crop instead of proportionally shrinking the artwork. */
+.veil-section {
+  overflow-x: clip;
+}
+
+.veil-stack {
+  width: 887px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.veil-stack img {
+  width: 100%;
+  height: auto;
+}
+
+/* Fixed veil width on all screen sizes */
+.veil-section {
+  overflow-x: clip;
+}
+
+.veil-stack {
+  width: 1340px;
+  max-width: none;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+.veil-stack img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+/* Mobile-only hero-to-veil transition.
+   Add this block at the END of style.css. It assumes the hero artwork is the
+   first direct image in .veil-stack, followed by the veil panels. */
+@media (max-width: 767px) {
+  .veil-section {
+    overflow-x: clip;
+  }
+
+  .veil-section .veil-stack {
+    width: 980px;
+    max-width: none;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .veil-section .veil-stack > img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+
+  /* The taller first artwork becomes a composed mobile header instead of
+     exposing its hard lower edge above the next veil panel. */
+  .veil-section .veil-stack > img:first-child {
+    height: clamp(280px, 48svh, 360px);
+    object-fit: cover;
+    object-position: center top;
+    position: relative;
+    z-index: 1;
+    margin-bottom: -88px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0 67%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0 67%, transparent 100%);
+  }
+
+  /* Preserve the card above the decorative artwork when this selector exists. */
+  .veil-section .hero-card {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Prevent Tailwind's space-y-5 from moving absolute corner ornaments */
+.card-3d > .corner-ornament {
+  margin-top: 0 !important;
+}
+
+@font-face {
+  font-family: "Diwani Simple";
+  src: url("assets/fonts/diwani-simple.woff2") format("woff2");
+  font-display: swap;
+}
+
+.couple-names {
+  font-family: "Diwani Simple", serif;
+  font-weight: 400;
+  letter-spacing: 0;
 }
