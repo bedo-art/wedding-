@@ -780,11 +780,16 @@
                     body: formData
                 });
 
-                const result = await response.json();
+                let result;
+                try {
+                    result = await response.json();
+                } catch {
+                    throw new Error(`Server returned ${response.status} ${response.statusText} (no JSON body)`);
+                }
 
                 if (result.success) {
                     formEl.reset(); // Clear the text boxes
-                    
+
                     // Show the success message for 5 seconds, then hide it again
                     const successEl = document.getElementById(successElementId);
                     successEl.classList.remove('hidden');
@@ -794,11 +799,11 @@
                     }, 5000);
                 } else {
                     console.error('Submission error:', result);
-                    alert('حدث خطأ أثناء إرسال البيانات، يرجى المحاولة لاحقاً.');
+                    alert('حدث خطأ أثناء إرسال البيانات: ' + (result.message || 'خطأ غير معروف') + '\nيرجى المحاولة لاحقاً.');
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
-                alert('فشل الاتصال بالخادم.');
+                alert('فشل الاتصال بالخادم: ' + error.message);
             }
         }
     </script>
